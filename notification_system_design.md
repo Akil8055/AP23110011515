@@ -181,3 +181,23 @@ worker():
   send_email(job.student_id, job.message)
 
   push_to_app(job.student_id, job.message)
+
+
+# Stage 6:
+etch notifications from api
+
+assign priority:
+placement > result > event
+
+sort notifications based on:
+
+priority (high to low)
+timestamp (latest first)
+
+take top 10 notifications
+
+display result
+
+first higher priority notifications are selected
+if same type then latest notification is selected
+final output contains top 10 important notifications(using slice)
