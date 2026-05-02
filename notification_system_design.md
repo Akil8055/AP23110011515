@@ -85,3 +85,31 @@ increased latency
 ## sample queries
 select * FROM notifications WHERE userid = 'Akil' ORDER BY createdAt DESC LIMIT 20;
 delete from notifications where id = 'notification_id';
+
+# Stage 3
+## query accurate?
+yes it is correct it fetch unread notifications of a student
+## why it is slow?
+no index used
+full table scan
+large data (5 million rows)
+sorting without index
+
+## what i change 
+add composite index
+create index idx_notifications 
+on notifications(studentid,isread,createdat desc);
+computation cost
+after index : O(log n)
+
+## index on every column is effective or not
+no
+reasons:
+increases storage
+not all index are used
+
+## query for placement notifications last 7 days
+select studentid 
+from notifications 
+where notificationtype = 'Placement' 
+and createdat >= now() - interval '7 days';
