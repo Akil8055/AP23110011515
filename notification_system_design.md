@@ -60,3 +60,28 @@ isRead (boolean)
 timestamp (ISO string)
 ## Real-Time Notification Mechanism
 websockets to send real time notification
+
+# Stage 2:
+
+## database choice 
+i would recommend using a relational database(postgre SQL) because:
+structured schema
+efficient querying using indexes
+
+## database Schema 
+column      - type     
+id          - UUid  
+userid      - varchar
+type        - Enum 
+message     - text
+isread      - boolean
+createdat   - timestamp
+
+## problem as data grows
+
+slow queries
+increased latency
+
+## sample queries
+select * FROM notifications WHERE userid = 'Akil' ORDER BY createdAt DESC LIMIT 20;
+delete from notifications where id = 'notification_id';
