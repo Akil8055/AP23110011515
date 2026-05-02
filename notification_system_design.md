@@ -5,7 +5,7 @@ creaate notification
 mark notification as read
 delete notification
 ## API Endpoints
-# 1.get notifications
+### 1.get notifications
 =get/notifications?userId=17484
 
 response :
@@ -17,8 +17,9 @@ data ={ "notifications": [
     "isRead": false, 
     "timestamp": "2026-04-22T17:51:30Z" } ] }
 
-# 2.create notification
+### 2.create notification
 =post/notifications
+
 Request Body:
 
 {
@@ -34,14 +35,14 @@ Response:
   "status": "created"
 }
 
-# 3.marks a read
+### 3.marks a read
 = patch/notification//read
 Response:
 
 {
   "status": "updated"
 }
-# 4.delete notification
+### 4.delete notification
 = delete/notification
 Response:
 
