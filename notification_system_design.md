@@ -141,3 +141,43 @@ improve query performance
 tradeoff:
 faster reads
 slower writes
+
+# Stage 5:
+
+## issues
+sequential processing (slow)
+if email fails process breaks
+no retry
+not scalable for 50000 users
+
+## what if send_email fails
+
+some users miss email
+no retry → data lost
+
+## solution
+
+use queue system
+make process async
+
+## should db save and email happen together
+
+no
+
+db should save first
+email can fail and retry later
+
+## function notify_all(student_ids, message):
+
+  for student_id in student_ids:
+    push_to_queue(student_id, message)
+
+worker():
+
+  job = get_from_queue()
+
+  save_to_db(job.student_id, job.message)
+
+  send_email(job.student_id, job.message)
+
+  push_to_app(job.student_id, job.message)
