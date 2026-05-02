@@ -113,3 +113,31 @@ select studentid
 from notifications 
 where notificationtype = 'Placement' 
 and createdat >= now() - interval '7 days';
+
+# stage 4
+
+## caching (redis)
+
+store notifications in cache
+
+tradeoff:
+fast reads
+data may be slightly outdated
+
+## pagination
+
+fetch limited data
+
+example: limit 20
+
+tradeoff:
+reduces load
+user not see all data at once
+
+## indexing
+
+improve query performance
+
+tradeoff:
+faster reads
+slower writes
